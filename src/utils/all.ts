@@ -5,3 +5,6 @@ export const cx = (...classNames: any) => classNames.filter(Boolean).join(" ");
 export const myLoader = ({ src }: { src: any }) => {
   return src;
 };
+
+export const NEXT_URL = process.env.NEXT_URL;
+export const SITE_URL = process.env.SITE_URL;

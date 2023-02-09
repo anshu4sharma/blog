@@ -16,19 +16,13 @@ export default function Navbar() {
 
   const rightmenu = [
     {
-      label: "Archive",
-      href: "/archive",
-    },
-    {
       label: "Pro Version",
-      href: "https://stablo-pro.web3templates.com/",
-      external: true,
+      href: "/",
       badge: "new",
     },
     {
       label: "Portfolio",
-      href: "https://portfolio.anshusharma.me",
-      external: true,
+      href: "/portfolio",
     },
   ];
 
@@ -57,7 +51,7 @@ export default function Navbar() {
                     <span className="block text-center">Anshu Sharma</span>
                   </Link>
                   <Link href="/" className="hidden w-28 dark:block">
-                    <span className="block text-center">Stablo</span>
+                    <span className="block text-center">Anshu Sharma</span>
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -91,8 +85,6 @@ export default function Navbar() {
                       href={item.href}
                       key={index}
                       className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                      target={item.external ? "_blank" : ""}
-                      rel={item.external ? "noopener" : ""}
                     >
                       <span> {item.label}</span>
                       {item.badge && (

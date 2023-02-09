@@ -38,7 +38,7 @@ const PostList: FC<Props> = ({ post, aspect, preloadImage }) => {
                 sizes="80vw"
                 layout="fill"
                 objectFit="cover"
-                priority={preloadImage ? true : false}
+              priority={preloadImage ? true : false}
                 className="transition-all"
               />
             ) : (

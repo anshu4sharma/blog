@@ -8,8 +8,7 @@
     "export": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
-    "postbuild": "next-sitemap"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.10",

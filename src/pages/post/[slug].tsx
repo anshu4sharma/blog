@@ -8,18 +8,25 @@ import { SinglePost, TPosts } from "@/types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
-import upperFirst from "@/utils/upperFirst";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
-
+import { NEXT_URL } from "@/utils/all";
 type Props = {
   postdata: SinglePost;
+  status?: number;
 };
-const Post: FC<Props> = ({ postdata }) => {
+const Post: FC<Props> = ({ postdata, status }) => {
+  /*
+  If your fallback is set to true you need to handle the fallback state.
+ use this to fix >> Build error occurred
+Error: Export encountered errors on following paths:
+/post/[slug]
+*/
   const router = useRouter();
   if (router?.isFallback) {
     return <Loader />;
   }
+
   return (
     <>
       <Layout>
@@ -35,7 +42,6 @@ const Post: FC<Props> = ({ postdata }) => {
               {postdata?.data?.data?.attributes?.title}
             </h1>
           </div>
-
           <article className="max-w-screen-md mx-auto ">
             <div className="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-500">
               <ReactMarkdown>
@@ -44,37 +50,23 @@ const Post: FC<Props> = ({ postdata }) => {
               </ReactMarkdown>
             </div>
             <div className="flex justify-center mt-3 space-x-3 text-gray-500 ">
-              <div className="flex items-center gap-3">
-                {postdata.data.data.attributes.author && (
-                  <div className="relative flex-shrink-0 w-12 h-12">
-                    <p className="text-2xl border bg-red-700 h-12 items-center flex justify-center text-white dark:text-gray-400 rounded-full">
-                      {upperFirst(
-                        postdata.data.data.attributes.author.slice(0, 2)
-                      )}
-                    </p>
-                  </div>
-                )}
-                <div>
-                  <p className="text-gray-800 dark:text-gray-400">
-                    {upperFirst(postdata.data.data.attributes.author)}
-                  </p>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <time
-                      className="text-gray-500 dark:text-gray-400"
-                      dateTime={
-                        postdata.data.data.attributes.createdAt ||
-                        postdata.data.data.attributes.publishedAt
-                      }
-                    >
-                      {format(
-                        parseISO(
-                          postdata?.data.data.attributes.createdAt ||
-                            postdata.data.data.attributes.publishedAt
-                        ),
-                        "MMMM dd, yyyy"
-                      )}
-                    </time>
-                  </div>
+              <div className="my-4">
+                <div className="flex items-center space-x-2 text-sm">
+                  <time
+                    className="text-gray-500 dark:text-gray-400"
+                    dateTime={
+                      postdata.data.data.attributes.createdAt ||
+                      postdata.data.data.attributes.publishedAt
+                    }
+                  >
+                    {format(
+                      parseISO(
+                        postdata?.data.data.attributes.createdAt ||
+                          postdata.data.data.attributes.publishedAt
+                      ),
+                      "MMMM dd, yyyy"
+                    )}
+                  </time>
                 </div>
               </div>
             </div>
@@ -96,9 +88,7 @@ const Post: FC<Props> = ({ postdata }) => {
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await axios.get<TPosts>(
-    "https://bloganshu.up.railway.app/api/posts"
-  );
+  const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts`);
 
   let paths = data?.data?.map((page) => ({
     params: {
@@ -112,14 +102,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { data } = await axios.get(
-    `https://bloganshu.up.railway.app/api/posts/${params?.slug}`
-  );
-
-  return {
-    props: {
-      postdata: { data },
-    },
-    revalidate: 60,
-  };
+  try {
+    const { data } = await axios.get(`${NEXT_URL}/api/posts/${params?.slug}`);
+    return {
+      props: {
+        postdata: { data },
+      },
+      revalidate: 60,
+    };
+  } catch (err) {
+    return { notFound: true };
+  }
 };

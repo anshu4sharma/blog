@@ -1,15 +1,16 @@
 export type TPosts = {
   data: TPost[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
+  meta: Meta;
 };
 
+export type Meta = {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
+};
 export type SinglePost = {
   data: {
     data: Omit<TPost, "thumbnail">;
