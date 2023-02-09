@@ -1,42 +1,35 @@
-import React from "react";
 import { Disclosure } from "@headlessui/react";
 import Container from "@/components/container";
 import Link from "next/link";
-import Image from "next/image";
-import { myLoader } from "@/utils/all";
 
-export default function Navbar(props) {
+export default function Navbar() {
   const leftmenu = [
     {
       label: "Home",
-      href: "/"
-    },
-    {
-      label: "About",
-      href: "/about"
+      href: "/",
     },
     {
       label: "Contact",
-      href: "/contact"
-    }
+      href: "/contact",
+    },
   ];
 
   const rightmenu = [
     {
       label: "Archive",
-      href: "/archive"
+      href: "/archive",
     },
     {
       label: "Pro Version",
       href: "https://stablo-pro.web3templates.com/",
       external: true,
-      badge: "new"
+      badge: "new",
     },
     {
-      label: "Download",
-      href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
-      external: true
-    }
+      label: "Portfolio",
+      href: "https://portfolio.anshusharma.me",
+      external: true,
+    },
   ];
 
   const mobilemenu = [...leftmenu, ...rightmenu];
@@ -50,46 +43,31 @@ export default function Navbar(props) {
               <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
                 <div className="flex-col items-center justify-start order-1 hidden w-full md:flex md:flex-row md:justify-end md:w-auto md:order-none md:flex-1">
                   {leftmenu.map((item, index) => (
-                    <Link href={item.href} key={index} className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
+                    <Link
+                      href={item.href}
+                      key={index}
+                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                    >
                       {item.label}
                     </Link>
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
                   <Link href="/" className="w-28 dark:hidden">
-                    {props.logo ? (
-                      <Image
-                        alt="Logo"
-                        sizes="(max-width: 640px) 100vw, 200px"
-                        priority={true}
-                      />
-                    ) : (
-                      <span className="block text-center">
-                        Stablo
-                      </span>
-                    )}
+                    <span className="block text-center">Anshu Sharma</span>
                   </Link>
-                  <Link href="/"
-                    className="hidden w-28 dark:block">
-                    {props.logoalt ? (
-                      <Image
-                        alt="Logo"
-                        sizes="(max-width: 640px) 100vw, 200px"
-                        priority={true}
-                      />
-                    ) : (
-                      <span className="block text-center">
-                        Stablo
-                      </span>
-                    )}
+                  <Link href="/" className="hidden w-28 dark:block">
+                    <span className="block text-center">Stablo</span>
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
-                    className="px-2 py-1 ml-auto text-gray-500 rounded-md md:hidden focus:text-blue-500 focus:outline-none dark:text-gray-300 ">
+                    className="px-2 py-1 ml-auto text-gray-500 rounded-md md:hidden focus:text-blue-500 focus:outline-none dark:text-gray-300 "
+                  >
                     <svg
                       className="w-6 h-6 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24">
+                      viewBox="0 0 24 24"
+                    >
                       {open && (
                         <path
                           fillRule="evenodd"
@@ -109,11 +87,14 @@ export default function Navbar(props) {
 
                 <div className="flex-col items-center justify-start order-2 hidden w-full md:flex md:flex-row md:w-auto md:flex-1 md:order-none">
                   {rightmenu.map((item, index) => (
-                    <Link href={item.href} key={index}
+                    <Link
+                      href={item.href}
+                      key={index}
                       className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
                       target={item.external ? "_blank" : ""}
-                      rel={item.external ? "noopener" : ""}>
-                      {/* <span> {item.label}</span> */}
+                      rel={item.external ? "noopener" : ""}
+                    >
+                      <span> {item.label}</span>
                       {item.badge && (
                         <span className="bg-blue-100 text-blue-600 text-xs font-semibold ml-2 px-2 py-0.5 rounded dark:bg-cyan-200 dark:text-blue-800 ">
                           {item.badge}
@@ -126,10 +107,11 @@ export default function Navbar(props) {
               <Disclosure.Panel>
                 <div className="flex flex-col items-center justify-start order-2 w-full md:hidden">
                   {mobilemenu.map((item, index) => (
-                    <Link href={item.href} key={index}
+                    <Link
+                      href={item.href}
+                      key={index}
                       className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                      target={item.external ? "_blank" : ""}
-                      rel={item.external ? "noopener" : ""}>
+                    >
                       {item.label}
                     </Link>
                   ))}

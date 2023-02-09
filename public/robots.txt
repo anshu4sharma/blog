@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://anshusharma.me
+
+# Sitemaps
+Sitemap: https://anshusharma.me/sitemap.xml

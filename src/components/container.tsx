@@ -1,18 +1,9 @@
-import { cx } from "@/utils/all";
-
-export default function Container(props) {
+export default function Container({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={
-        "container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg"}>
-      {props.children}
+      className={"container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg"}
+    >
+      {children}
     </div>
-    // <div
-    //   className={cx(
-    //     "container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg",
-    //     props.className
-    //   )}>
-    //   {props.children}
-    // </div>
   );
 }

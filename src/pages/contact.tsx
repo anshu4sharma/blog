@@ -1,16 +1,11 @@
 import Container from "@/components/container";
 import Layout from "@/components/layout";
-import { useState, useEffect } from "react";
 import {
   LocationMarkerIcon,
   MailIcon,
-  PhoneIcon
+  PhoneIcon,
 } from "@heroicons/react/outline";
 export default function Contact() {
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [message, setMessage] = useState(false);
-  // Please update the Access Key in the Sanity CMS - Site Congig Page
-
   return (
     <Layout>
       <Container>
@@ -27,8 +22,8 @@ export default function Contact() {
               Contact Stablo
             </h2>
             <p className="max-w-sm mt-5">
-              Have something to say? We are here to help. Fill up the
-              form or send email or call phone.
+              Have something to say? We are here to help. Fill up the form or
+              send email or call phone.
             </p>
 
             <div className="mt-5">
@@ -36,22 +31,16 @@ export default function Contact() {
                 <LocationMarkerIcon className="w-4 h-4" />
                 <span>1734 Sanfransico, CA 93063</span>
               </div>
-              {/* {siteconfig?.email && (
-                <div className="flex items-center mt-2 space-x-2 text-dark-600 dark:text-gray-400">
-                  <MailIcon className="w-4 h-4" />
-                  <a href={`mailto:${siteconfig.email}`}>
-                    {siteconfig.email}
-                  </a>
-                </div>
-              )}
-              {siteconfig?.phone && (
-                <div className="flex items-center mt-2 space-x-2 text-dark-600 dark:text-gray-400">
-                  <PhoneIcon className="w-4 h-4" />
-                  <a href={`tel:${siteconfig.phone}`}>
-                    {siteconfig.phone}
-                  </a>
-                </div>
-              )} */}
+              <div className="flex items-center mt-2 space-x-2 text-dark-600 dark:text-gray-400">
+                <MailIcon className="w-4 h-4" />
+                <a href={`mailto:anshusharma6327@gmail.com`}>
+                  anshusharma6327@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center mt-2 space-x-2 text-dark-600 dark:text-gray-400">
+                <PhoneIcon className="w-4 h-4" />
+                <a href={`tel:1234567890`}>1234567890</a>
+              </div>
             </div>
           </div>
           <div>
@@ -68,11 +57,11 @@ export default function Contact() {
                   type="text"
                   placeholder="Full Name"
                   autoComplete="false"
-                  // className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
-                  //   errors.name
-                  //     ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
-                  //     : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
-                  // }`}
+                  className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
+                    false
+                      ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
+                      : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
+                  }`}
                 />
                 {/* {errors.name && (
                   <div className="mt-1 text-red-600">
@@ -91,11 +80,11 @@ export default function Contact() {
                   placeholder="Email Address"
                   name="email"
                   autoComplete="false"
-                  // className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
-                  //   errors.email
-                  //     ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
-                  //     : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
-                  // }`}
+                  className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
+                    false
+                      ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
+                      : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
+                  }`}
                 />
                 {/* {errors.email && (
                   <div className="mt-1 text-red-600">
@@ -108,11 +97,11 @@ export default function Contact() {
                 <textarea
                   name="message"
                   placeholder="Your Message"
-                  // className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-gray-900   rounded-md outline-none  h-36 focus:ring-4  ${
-                  //   errors.message
-                  //     ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
-                  //     : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
-                  // }`}
+                  className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-gray-900   rounded-md outline-none  h-36 focus:ring-4  ${
+                    false
+                      ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
+                      : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
+                  }`}
                 />
                 {/* {errors.message && (
                   <div className="mt-1 text-red-600">
@@ -124,7 +113,8 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full py-4 font-semibold text-white transition-colors bg-gray-900 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 dark:bg-white dark:text-black ">
+                className="w-full py-4 font-semibold text-white transition-colors bg-gray-900 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 dark:bg-white dark:text-black "
+              >
                 {/* {isSubmitting ? (
                   <svg
                     className="w-5 h-5 mx-auto text-white dark:text-black animate-spin"
