@@ -40,7 +40,6 @@ Error: Export encountered errors on following paths:
                   key={post.id}
                   post={post}
                   aspect="landscape"
-                  preloadImage={false}
                 />
               ))}
           </div>

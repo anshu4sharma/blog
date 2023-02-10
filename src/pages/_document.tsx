@@ -1,6 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { Partytown } from "@builder.io/partytown/react";
-import Script from "next/script";
 
 export default function Document() {
   return (
