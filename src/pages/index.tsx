@@ -14,14 +14,13 @@ const Home: NextPage<Props> = ({ data }) => {
     <>
       <Layout>
         <Container>
-          <div className="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
+          <div className="grid gap-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
             {data.data.length > 0 &&
               data.data.map((post) => (
                 <PostList
                   key={post.id}
                   post={post}
                   aspect="landscape"
-                  preloadImage={true}
                 />
               ))}
           </div>

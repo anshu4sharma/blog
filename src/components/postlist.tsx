@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { cx } from "@/utils/all";
 import { parseISO, format } from "date-fns";
@@ -11,9 +11,8 @@ import upperFirst from "@/utils/upperFirst";
 type Props = {
   post: TPost;
   aspect: string;
-  preloadImage: boolean;
 };
-const PostList: FC<Props> = ({ post, aspect, preloadImage }) => {
+const PostList: FC<Props> = ({ post, aspect }) => {
   return (
     <>
       <div className="cursor-pointer group">
@@ -26,19 +25,14 @@ const PostList: FC<Props> = ({ post, aspect, preloadImage }) => {
           <Link href={`/post/${post?.attributes.slug}`}>
             {post?.attributes.thumbnail.data.attributes.url ? (
               <Image
-                src={post?.attributes.thumbnail.data.attributes.url}
-                blurDataURL={
-                  post?.attributes.thumbnail.data.attributes.url
-                }
+                src={post?.attributes?.thumbnail?.data?.attributes.url}
                 alt={
                   post.attributes.thumbnail.data.attributes.alternativeText ||
                   "Thumbnail"
                 }
-                placeholder="blur"
-                sizes="80vw"
                 layout="fill"
-                objectFit="cover"
-              priority={preloadImage ? true : false}
+                sizes="80vw"
+                priority={true}
                 className="transition-all"
               />
             ) : (
