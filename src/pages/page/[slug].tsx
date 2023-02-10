@@ -39,7 +39,6 @@ Error: Export encountered errors on following paths:
                 <PostList
                   key={post.id}
                   post={post}
-                  aspect="landscape"
                 />
               ))}
           </div>

@@ -20,7 +20,6 @@ const Home: NextPage<Props> = ({ data }) => {
                 <PostList
                   key={post.id}
                   post={post}
-                  aspect="landscape"
                 />
               ))}
           </div>

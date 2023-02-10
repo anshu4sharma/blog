@@ -10,16 +10,14 @@ import upperFirst from "@/utils/upperFirst";
 
 type Props = {
   post: TPost;
-  aspect: string;
 };
-const PostList: FC<Props> = ({ post, aspect }) => {
+const PostList: FC<Props> = ({ post }) => {
   return (
     <>
       <div className="cursor-pointer group">
         <div
           className={cx(
-            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105",
-            aspect === "landscape" ? "aspect-video" : "aspect-square"
+            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105"
           )}
         >
           <Link href={`/post/${post?.attributes.slug}`}>
@@ -30,10 +28,10 @@ const PostList: FC<Props> = ({ post, aspect }) => {
                   post.attributes.thumbnail.data.attributes.alternativeText ||
                   "Thumbnail"
                 }
-                layout="fill"
-                sizes="80vw"
+                height={"400"}
+                width={"400"}
                 priority={true}
-                className="transition-all"
+                className="object-cover aspect-video"
               />
             ) : (
               <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
