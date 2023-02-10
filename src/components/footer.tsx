@@ -18,15 +18,6 @@ export default function Footer() {
           </a>
         </span>
         <span>&middot;</span>
-        <span>
-          <a
-            href="https://github.com/web3templates/stablo"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Github
-          </a>
-        </span>
       </div>
       <div className="flex items-center justify-end my-2">
         <ThemeSwitch />

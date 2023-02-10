@@ -4,8 +4,8 @@ import PostList from "@/components/postlist";
 import axios from "axios";
 import { TPosts } from "@/types";
 import { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
 import { NEXT_URL } from "@/utils/all";
+import Pagination from "@/components/Pagination";
 type Props = {
   data: TPosts;
 };
@@ -26,31 +26,7 @@ const Home: NextPage<Props> = ({ data }) => {
               ))}
           </div>
         </Container>
-        <Container>
-          <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-            <nav className="flex justify-between">
-              <button
-                className="cursor-auto disabled:opacity-50"
-                disabled={true}
-              >
-                Previous
-              </button>
-              <span>1 of {data?.meta?.pagination?.pageCount}</span>
-              {data.meta.pagination.pageCount > data.meta.pagination.page ? (
-                <Link href={`/page/${data?.meta?.pagination.page + 1}`}>
-                  <button>Next</button>
-                </Link>
-              ) : (
-                <button
-                  className="cursor-auto disabled:opacity-50"
-                  disabled={true}
-                >
-                  Next
-                </button>
-              )}
-            </nav>
-          </div>
-        </Container>
+        <Pagination data={data.meta} />
       </Layout>
     </>
   );

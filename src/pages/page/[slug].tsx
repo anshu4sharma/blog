@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Layout from "@/components/layout";
 import Container from "@/components/container";
 import axios from "axios";
@@ -10,6 +9,7 @@ import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import Error from "@/components/Error";
 import { NEXT_URL } from "@/utils/all";
+import Pagination from "@/components/Pagination";
 
 type Props = {
   data: TPosts;
@@ -45,42 +45,7 @@ Error: Export encountered errors on following paths:
               ))}
           </div>
         </Container>
-        {data?.meta?.pagination && (
-          <Container>
-            <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-              <nav className="flex justify-between">
-                {data?.meta?.pagination?.page > 1 ? (
-                  <Link
-                    className="cursor-pointer"
-                    href={`/page/${data?.meta?.pagination?.page - 1}`}
-                  >
-                    Previous
-                  </Link>
-                ) : (
-                  <button className="cursor-auto disabled:opacity-50">
-                    Previous
-                  </button>
-                )}
-                <span>
-                  {data?.meta?.pagination?.page} of{" "}
-                  {data?.meta?.pagination?.pageCount}
-                </span>
-                {data.meta.pagination.pageCount > data.meta.pagination.page ? (
-                  <Link href={`/page/${data?.meta?.pagination.page + 1}`}>
-                    <button>Next</button>
-                  </Link>
-                ) : (
-                  <button
-                    className="cursor-auto disabled:opacity-50"
-                    disabled={true}
-                  >
-                    Next
-                  </button>
-                )}
-              </nav>
-            </div>
-          </Container>
-        )}
+        <Pagination data={data?.meta} />
       </Layout>
     </>
   );
