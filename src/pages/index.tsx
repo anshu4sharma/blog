@@ -21,7 +21,7 @@ const Home: NextPage<Props> = ({ data }) => {
                   key={post.id}
                   post={post}
                   aspect="landscape"
-                  preloadImage={false}
+                  preloadImage={true}
                 />
               ))}
           </div>

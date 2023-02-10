@@ -12,11 +12,12 @@ export default function Document() {
         />
         <Partytown debug={true} forward={["dataLayer.push"]} />
         <Script
-          async
           strategy="worker"
+          async
+          crossOrigin="anonymous"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
           type="text/partytown"
-        ></Script>
+        />
       </Head>
       <body>
         <Main />
