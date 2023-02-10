@@ -3,6 +3,7 @@ import Layout from "@/components/layout";
 import Container from "@/components/container";
 import { parseISO, format } from "date-fns";
 import CategoryLabel from "@/components/blog/category";
+import { NextSeo } from "next-seo";
 import axios from "axios";
 import { SinglePost, TPosts } from "@/types";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -29,6 +30,17 @@ Error: Export encountered errors on following paths:
 
   return (
     <>
+      <NextSeo
+        title={`Anshu Sharma - ${postdata.data.data.attributes.title}`}
+        description={postdata.data.data.attributes.title}
+        canonical="anshusharma.me/contact"
+        openGraph={{
+          url: `anshusharma.me/${postdata.data.data.attributes.slug}`,
+          title: `Anshu Sharma - ${postdata.data.data.attributes.title}`,
+          description: postdata.data.data.attributes.title,
+          siteName: "Anshu Sharma",
+        }}
+      />
       <Layout>
         <Container>
           <div className="max-w-screen-md mx-auto ">

@@ -10,7 +10,7 @@ export default function Footer() {
         <span>
           Made by {""}
           <a
-            href="https://web3templates.com/?ref=stablo-template"
+            href="https://anshusharma.me"
             rel="noopener noreferrer"
             target="_blank"
           >

@@ -16,13 +16,9 @@ export default function Navbar() {
 
   const rightmenu = [
     {
-      label: "Pro Version",
-      href: "/",
-      badge: "new",
-    },
-    {
       label: "Portfolio",
-      href: "/portfolio",
+      badge: "new",
+      href: "https://anshu-portfolio.vercel.app/",
     },
   ];
 
@@ -99,13 +95,15 @@ export default function Navbar() {
               <Disclosure.Panel>
                 <div className="flex flex-col items-center justify-start order-2 w-full md:hidden">
                   {mobilemenu.map((item, index) => (
-                    <Link
+                    <a
                       href={item.href}
                       key={index}
                       className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                      target="_blank"
+                      rel="noreferrer"
                     >
                       {item.label}
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </Disclosure.Panel>
