@@ -95,15 +95,13 @@ export default function Navbar() {
               <Disclosure.Panel>
                 <div className="flex flex-col items-center justify-start order-2 w-full md:hidden">
                   {mobilemenu.map((item, index) => (
-                    <a
+                    <Link
                       href={item.href}
                       key={index}
                       className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                      target="_blank"
-                      rel="noreferrer"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Disclosure.Panel>

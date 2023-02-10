@@ -28,7 +28,7 @@ const PostList: FC<Props> = ({ post, aspect, preloadImage }) => {
               <Image
                 src={post?.attributes.thumbnail.data.attributes.url}
                 blurDataURL={
-                  post?.attributes.thumbnail.data.attributes.blurhash
+                  post?.attributes.thumbnail.data.attributes.url
                 }
                 alt={
                   post.attributes.thumbnail.data.attributes.alternativeText ||
