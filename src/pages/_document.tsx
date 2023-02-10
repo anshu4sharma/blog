@@ -10,14 +10,11 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap"
           rel="stylesheet"
         />
-        <Partytown debug={true} forward={["dataLayer.push"]} />
-        <Script
-          strategy="worker"
+        <script
           async
-          crossOrigin="anonymous"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
-          type="text/partytown"
-        />
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <body>
         <Main />
