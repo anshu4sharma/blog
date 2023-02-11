@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { cx } from "@/utils/all";
 import { parseISO, format } from "date-fns";
@@ -17,21 +17,22 @@ const PostList: FC<Props> = ({ post }) => {
       <div className="cursor-pointer group">
         <div
           className={cx(
-            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105"
+            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105 aspect-video"
           )}
         >
           <Link href={`/post/${post?.attributes.slug}`}>
             {post?.attributes.thumbnail.data.attributes.url ? (
               <Image
-                src={post?.attributes?.thumbnail?.data?.attributes.url}
+                src={post?.attributes.thumbnail.data.attributes.url}
                 alt={
                   post.attributes.thumbnail.data.attributes.alternativeText ||
                   "Thumbnail"
                 }
-                height={"400"}
-                width={"400"}
+                sizes="80vw"
+                layout="fill"
+                objectFit="cover"
                 priority={true}
-                className="object-cover aspect-video"
+                className="transition-all"
               />
             ) : (
               <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
