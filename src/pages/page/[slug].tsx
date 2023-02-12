@@ -66,7 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await axios.get(
-    `${NEXT_URL}/api/posts?populate=*&pagination[page]=${params?.slug}&pagination[pageSize]=10`
+    `${NEXT_URL}/api/posts?populate=*&pagination[page]=${params?.slug}&pagination[pageSize]=10&sort=createdAt:desc`
   );
   return {
     props: {

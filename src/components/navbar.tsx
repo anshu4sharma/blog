@@ -8,17 +8,12 @@ export default function Navbar() {
       label: "Home",
       href: "/",
     },
-    {
-      label: "Contact",
-      href: "/contact",
-    },
   ];
 
   const rightmenu = [
     {
-      label: "Portfolio",
-      badge: "new",
-      href: "https://anshu-portfolio.vercel.app/",
+      label: "Contact",
+      href: "/contact",
     },
   ];
 
@@ -83,11 +78,6 @@ export default function Navbar() {
                       className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
                     >
                       <span> {item.label}</span>
-                      {item.badge && (
-                        <span className="bg-blue-100 text-blue-600 text-xs font-semibold ml-2 px-2 py-0.5 rounded dark:bg-cyan-200 dark:text-blue-800 ">
-                          {item.badge}
-                        </span>
-                      )}
                     </Link>
                   ))}
                 </div>

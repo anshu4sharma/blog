@@ -33,7 +33,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await axios.get(
-    `${NEXT_URL}/api/posts?populate=*&pagination[page]=1&pagination[pageSize]=10`
+    `${NEXT_URL}/api/posts?populate=*&pagination[page]=1&pagination[pageSize]=10&sort=createdAt:desc`
   );
   return {
     props: { data: data },
