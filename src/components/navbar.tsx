@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import Container from "@/components/container";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const leftmenu = [
@@ -38,11 +39,22 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
-                  <Link href="/" className="w-28 dark:hidden">
-                    <span className="block text-center">Anshu Sharma</span>
+                  <Link href="/" className="w-full dark:hidden">
+                    <Image
+                      width={150}
+                      height={100}
+                      alt="logo"
+                      src={"/logo.png"}
+                    />
                   </Link>
-                  <Link href="/" className="hidden w-28 dark:block">
-                    <span className="block text-center">Anshu Sharma</span>
+                  <Link href="/" className="hidden dark:block">
+                    <Image
+                      width={150}
+                      height={100}
+                      className="invert"
+                      alt="logo"
+                      src={"/logo.png"}
+                    />
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
