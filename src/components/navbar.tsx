@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import Container from "@/components/container";
 import Link from "next/link";
-import Image from "next/image";
+import NavMenu from "./NavMenu";
 
 export default function Navbar() {
   const leftmenu = [
@@ -39,22 +39,11 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
-                  <Link href="/" className="w-full dark:hidden">
-                    <Image
-                      width={150}
-                      height={100}
-                      alt="logo"
-                      src={"/logo.png"}
-                    />
+                  <Link href="/" className="text-xl dark:hidden">
+                    Anshu Sharma
                   </Link>
-                  <Link href="/" className="hidden dark:block">
-                    <Image
-                      width={150}
-                      height={100}
-                      className="invert"
-                      alt="logo"
-                      src={"/logo.png"}
-                    />
+                  <Link href="/" className="hidden text-xl dark:block">
+                    Anshu Sharma
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -83,6 +72,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex-col items-center justify-start order-2 hidden w-full md:flex md:flex-row md:w-auto md:flex-1 md:order-none">
+                  <NavMenu />
                   {rightmenu.map((item, index) => (
                     <Link
                       href={item.href}
@@ -106,6 +96,7 @@ export default function Navbar() {
                     </Link>
                   ))}
                 </div>
+                <NavMenu />
               </Disclosure.Panel>
             </>
           )}

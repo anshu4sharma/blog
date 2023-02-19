@@ -11,11 +11,6 @@ export type Meta = {
     total: number;
   };
 };
-export type SinglePost = {
-  data: {
-    data: Omit<TPost, "thumbnail">;
-  };
-};
 
 export type TPost = {
   id: number;
@@ -26,7 +21,7 @@ export type TAttributes = {
   title: string;
   description: string;
   author: string;
-  label: string;
+  category: Category;
   slug: string;
   createdAt: string;
   updatedAt: string;
@@ -34,6 +29,22 @@ export type TAttributes = {
   thumbnail: Tthumbnail;
   categoryColor: string;
   keywords: string | null;
+};
+
+export type SingleCategory = {
+  id: number;
+  attributes: Pick<ThumbnailAttributes, "createdAt" | "updatedAt"> & {
+    title: string;
+    slug: string;
+    publishedAt: string;
+  };
+};
+export type Category = {
+  data: SingleCategory;
+};
+export type Categories = {
+  data: SingleCategory[];
+  meta: Meta;
 };
 
 export type Tthumbnail = {

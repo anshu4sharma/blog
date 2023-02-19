@@ -8,3 +8,5 @@ export const myLoader = ({ src }: { src: any }) => {
 
 export const NEXT_URL = process.env.NEXT_URL;
 export const SITE_URL = process.env.SITE_URL;
+
+export const relValidateTimer = 30

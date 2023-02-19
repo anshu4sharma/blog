@@ -8,7 +8,7 @@ import PostList from "@/components/postlist";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import Error from "@/components/Error";
-import { NEXT_URL } from "@/utils/all";
+import { NEXT_URL, relValidateTimer } from "@/utils/all";
 import Pagination from "@/components/Pagination";
 
 type Props = {
@@ -72,6 +72,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       data,
     },
-    revalidate: 60,
+    revalidate: relValidateTimer,
   };
 };

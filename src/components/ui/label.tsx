@@ -17,7 +17,7 @@ export default function Label({
   return (
     <span
       className={cx(
-        "inline-block mt-5 text-xs font-medium tracking-wider uppercase ",
+        "inline-block mt-5 text-xs font-medium tracking-wider uppercase cursor-pointer",
         colors[color] || colors["pink"]
       )}
     >

@@ -10,13 +10,10 @@ export default function CategoryLabel({
   return (
     <div className="flex gap-3">
       {categories &&
-        categories.split(",").map((item, index) => {
-          return (
-            <Label key={index} color={color}>
-              {item}
-            </Label>
-          );
-        })}
+        <Label color={color}>
+          {categories}
+        </Label>
+      }
     </div>
   );
 }

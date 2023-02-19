@@ -17,7 +17,7 @@ const PostList: FC<Props> = ({ post }) => {
       <div className="cursor-pointer group">
         <div
           className={cx(
-            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105 aspect-video"
+            "relative  transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105 aspect-video"
           )}
         >
           <Link href={`/post/${post?.attributes.slug}`}>
@@ -28,9 +28,8 @@ const PostList: FC<Props> = ({ post }) => {
                   post.attributes.thumbnail.data.attributes.alternativeText ||
                   "Thumbnail"
                 }
-                sizes="80vw"
                 layout="fill"
-                objectFit="cover"
+                objectFit="cover"  
                 priority={true}
                 className="transition-all"
               />
@@ -41,10 +40,12 @@ const PostList: FC<Props> = ({ post }) => {
             )}
           </Link>
         </div>
-        <CategoryLabel
-          color={post.attributes.categoryColor}
-          categories={post.attributes.label}
-        />
+        {
+          post.attributes.categoryColor && post.attributes.category.data.attributes.title && <CategoryLabel
+            color={post.attributes.categoryColor}
+            categories={post.attributes.category.data.attributes.title}
+          />
+        }
         <h2 className="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
           <Link
             href={`/post/${post.attributes.slug}`}

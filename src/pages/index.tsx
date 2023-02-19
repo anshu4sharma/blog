@@ -3,8 +3,8 @@ import Container from "@/components/container";
 import PostList from "@/components/postlist";
 import axios from "axios";
 import { TPosts } from "@/types";
-import { GetStaticProps, NextPage } from "next";
-import { NEXT_URL } from "@/utils/all";
+import {  GetStaticProps, NextPage } from "next";
+import { NEXT_URL, relValidateTimer } from "@/utils/all";
 import Pagination from "@/components/Pagination";
 type Props = {
   data: TPosts;
@@ -37,6 +37,6 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   return {
     props: { data: data },
-    revalidate: 60,
+    revalidate: relValidateTimer,
   };
 };

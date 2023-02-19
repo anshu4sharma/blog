@@ -2,18 +2,17 @@ import Link from "next/link";
 import Layout from "@/components/layout";
 import Container from "@/components/container";
 import { parseISO, format } from "date-fns";
-import CategoryLabel from "@/components/blog/category";
 import { NextSeo } from "next-seo";
 import axios from "axios";
-import { SinglePost, TPosts } from "@/types";
+import { TPost, TPosts } from "@/types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
-import { NEXT_URL } from "@/utils/all";
+import { NEXT_URL, relValidateTimer } from "@/utils/all";
 type Props = {
-  postdata: SinglePost;
+  postdata: TPost;
   status?: number;
 };
 const Post: FC<Props> = ({ postdata, status }) => {
@@ -31,34 +30,28 @@ Error: Export encountered errors on following paths:
   return (
     <>
       <NextSeo
-        title={`Anshu Sharma - ${postdata.data.data.attributes.title}`}
-        description={postdata.data.data.attributes.title}
+        title={`Anshu Sharma - ${postdata.attributes.title}`}
+        description={postdata.attributes.title}
         canonical="anshusharma.me/contact"
         openGraph={{
-          url: `anshusharma.me/${postdata.data.data.attributes.slug}`,
-          title: `Anshu Sharma - ${postdata.data.data.attributes.title}`,
-          description: postdata.data.data.attributes.title,
+          url: `anshusharma.me/${postdata.attributes.slug}`,
+          title: `Anshu Sharma - ${postdata.attributes.title}`,
+          description: postdata.attributes.title,
           siteName: "Anshu Sharma",
         }}
       />
       <Layout>
         <Container>
-          <div className="max-w-screen-md mx-auto ">
-            <div className="flex justify-center">
-              <CategoryLabel
-                categories={postdata?.data?.data?.attributes?.label}
-                color={postdata.data.data.attributes.categoryColor}
-              />
-            </div>
+          <div className="max-w-screen-md mx-auto">
             <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
-              {postdata?.data?.data?.attributes?.title}
+              {postdata?.attributes?.title}
             </h1>
           </div>
           <article className="max-w-screen-md mx-auto ">
-            <div className="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-500">
+            <div className="mx-auto my-3 prose prose-base dark:prose-p:text-white dark:prose-h1:text-white prose-a:text-blue-500 dark:prose-h2:text-white dark:prose-h3:text-white dark:prose-h4:text-white  dark:prose-h5:text-white  dark:prose-h6:text-white">
               <ReactMarkdown>
-                {postdata?.data?.data?.attributes?.description &&
-                  postdata.data.data.attributes.description}
+                {postdata?.attributes?.description &&
+                  postdata.attributes.description}
               </ReactMarkdown>
             </div>
             <div className="flex justify-center mt-3 space-x-3 text-gray-500 ">
@@ -67,14 +60,14 @@ Error: Export encountered errors on following paths:
                   <time
                     className="text-gray-500 dark:text-gray-400"
                     dateTime={
-                      postdata.data.data.attributes.createdAt ||
-                      postdata.data.data.attributes.publishedAt
+                      postdata.attributes.createdAt ||
+                      postdata.attributes.publishedAt
                     }
                   >
                     {format(
                       parseISO(
-                        postdata?.data.data.attributes.createdAt ||
-                          postdata.data.data.attributes.publishedAt
+                        postdata?.attributes.createdAt ||
+                        postdata.attributes.publishedAt
                       ),
                       "MMMM dd, yyyy"
                     )}
@@ -82,6 +75,7 @@ Error: Export encountered errors on following paths:
                 </div>
               </div>
             </div>
+
             <div className="flex justify-center mt-7 mb-7">
               <Link
                 href="/"
@@ -115,12 +109,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const { data } = await axios.get(`${NEXT_URL}/api/posts/${params?.slug}`);
+    const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts?filters[slug][$eq]=${params?.slug}&populate=*`);
+    if (data.data.length < 1) {
+      return {
+        notFound: true,
+      }
+    }
     return {
       props: {
-        postdata: { data },
+        postdata: data.data[0]
       },
-      revalidate: 60,
+      revalidate: relValidateTimer,
     };
   } catch (err) {
     return { notFound: true };
