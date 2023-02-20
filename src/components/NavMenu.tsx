@@ -1,71 +1,21 @@
+import { NEXT_URL } from '@/utils/all';
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import axios from 'axios';
 import Link from 'next/link';
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+import { Categories, SingleCategory } from "@/types/index"
+import upperFirst from '@/utils/upperFirst';
 
-type link = {
-    href: string;
-    title: string
-}
-let data: link[] = [
-    {
-        href: "reactjs",
-        title: "React Js"
-    },
-    {
-        href: "nextjs",
-        title: "Next Js"
-    },
-    {
-        href: "nodejs",
-        title: "Node Js"
-    },
-    {
-        href: "typescript",
-        title: "Typescript"
-    },
-    {
-        href: "javascript",
-        title: "Javascript"
-    },
-    {
-        href: "crypto",
-        title: "Crypto"
-    },
-    {
-        href: "cms",
-        title: "Cms"
-    },
-    {
-        href: "graphql",
-        title: "Graphql"
-    },
-    {
-        href: "form",
-        title: "Forms"
-    }
-    ,
-    {
-        href: "framework",
-        title: "Framework"
-    }
-    ,
-    {
-        href: "api",
-        title: "Api"
-    }
-    ,
-    {
-        href: "coding",
-        title: "Coding"
-    }
-    ,
-    {
-        href: "backend",
-        title: "Backend"
-    }
-]
 const NavMenu = () => {
+    const [link, setLinks] = useState<SingleCategory[]>([])
+    const fetchCatergory = async () => {
+        const { data } = await axios.get<Categories>(`${NEXT_URL}/api/catergories`)
+        setLinks(data.data)
+    }
+    useEffect(() => {
+        fetchCatergory()
+    }, [])
     return (
         <Menu as="div" className="relative  text-left z-50">
             <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
@@ -85,14 +35,14 @@ const NavMenu = () => {
             >
                 <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1 ">
-                        {data.map((link) => <Menu.Item key={link.title}>
+                        {link.map((link) => <Menu.Item key={link.id}>
                             {({ active }) => (
                                 <Link
-                                    href={`/category/${link.href}`}
+                                    href={`/category/${link.attributes.title}`}
                                     className={`${active ? 'bg-blue-500 text-white' : 'text-gray-900'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 >
-                                    {link.title}
+                                    {upperFirst(link.attributes.title)}
                                 </Link>
                             )}
                         </Menu.Item>)
