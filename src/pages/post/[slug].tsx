@@ -40,6 +40,18 @@ Error: Export encountered errors on following paths:
           siteName: "Anshu Sharma",
         }}
       />
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
+        crossOrigin="anonymous"></script>
+      <ins className="adsbygoogle"
+        style={{ display: "block", textAlign: "center" }}
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-4780451799247980"
+        data-ad-slot="7454156444"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({ });
+      </script>
       <Layout>
         <Container>
           <div className="max-w-screen-md mx-auto">
