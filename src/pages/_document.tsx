@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -8,7 +9,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap"
           rel="stylesheet"
         />
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
           crossOrigin="anonymous"
