@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import Error from "@/components/Error";
 import Pagination from "@/components/Pagination";
+import Script from "next/script";
 type Props = {
     data: TPosts;
 };
@@ -23,17 +24,17 @@ const Category: NextPage<Props> = ({ data }) => {
     }
     return (
         <>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
-                crossOrigin="anonymous"></script>
+            <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
+                crossOrigin="anonymous"></Script>
             <ins className="adsbygoogle"
                 style={{ display: "block", textAlign: "center" }}
                 data-ad-client="ca-pub-4780451799247980"
                 data-ad-slot="6357525171"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
-            <script>
+            <Script id="category-ads">
                 (adsbygoogle = window.adsbygoogle || []).push({ });
-            </script>
+            </Script>
             <Layout>
                 <Container>
                     <div className="grid gap-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
