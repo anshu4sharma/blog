@@ -29,6 +29,7 @@ export type TAttributes = {
   thumbnail: Tthumbnail;
   categoryColor: string;
   keywords: string | null;
+  short_description: string;
 };
 
 export type SingleCategory = {

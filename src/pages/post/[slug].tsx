@@ -14,9 +14,8 @@ import { NEXT_URL, relValidateTimer } from "@/utils/all";
 import Script from "next/script";
 type Props = {
   postdata: TPost;
-  status?: number;
 };
-const Post: FC<Props> = ({ postdata, status }) => {
+const Post: FC<Props> = ({ postdata }) => {
   /*
   If your fallback is set to true you need to handle the fallback state.
  use this to fix >> Build error occurred
@@ -43,6 +42,7 @@ Error: Export encountered errors on following paths:
             },
           ],
         }}
+        description={postdata.attributes.short_description}
         canonical={`https://anshusharma.me/post/${postdata.attributes.slug}`}
         defaultTitle={postdata.attributes.title}
       />
