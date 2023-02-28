@@ -10,6 +10,7 @@ import Loader from "@/components/Loader";
 import Error from "@/components/Error";
 import { NEXT_URL, relValidateTimer } from "@/utils/all";
 import Pagination from "@/components/Pagination";
+import Script from "next/script";
 
 type Props = {
   data: TPosts;
@@ -31,17 +32,17 @@ Error: Export encountered errors on following paths:
 
   return (
     <>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
-        crossOrigin="anonymous"></script>
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
+        crossOrigin="anonymous"></Script>
       <ins className="adsbygoogle"
         style={{ display: "block", textAlign: "center" }}
         data-ad-client="ca-pub-4780451799247980"
         data-ad-slot="2576729708"
         data-ad-format="auto"
         data-full-width-responsive="true"></ins>
-      <script>
+      <Script id="pages-ads">
         (adsbygoogle = window.adsbygoogle || []).push({ });
-      </script>
+      </Script>
       <Layout>
         <Container>
           <div className="grid gap-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
