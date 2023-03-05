@@ -5,9 +5,6 @@ import { TPosts } from "@/types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
 import PostList from "@/components/postlist";
-import { useRouter } from "next/router";
-import Loader from "@/components/Loader";
-import Error from "@/components/Error";
 import { NEXT_URL, relValidateTimer } from "@/utils/all";
 import Pagination from "@/components/Pagination";
 import Script from "next/script";
@@ -16,24 +13,10 @@ type Props = {
   data: TPosts;
 };
 const Page: FC<Props> = ({ data }) => {
-  /*
-  If your fallback is set to true you need to handle the fallback state.
- use this to fix >> Build error occurred
-Error: Export encountered errors on following paths:
-        /page/[slug]
-  */
-  const router = useRouter();
-  if (router?.isFallback) {
-    return <Loader />;
-  }
-  if (data?.meta?.pagination?.page > data?.meta?.pagination?.pageCount) {
-    return <Error message="Page not found !" />;
-  }
-
   return (
     <>
       <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
-        crossOrigin="anonymous"></Script>
+        crossOrigin="anonymous" />
       <ins className="adsbygoogle"
         style={{ display: "block", textAlign: "center" }}
         data-ad-client="ca-pub-4780451799247980"
