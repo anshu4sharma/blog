@@ -13,7 +13,7 @@ type Props = {
 const Home: NextPage<Props> = ({ data }) => {
   return (
     <>
-      <Script id="ansh" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
+      {/* <Script id="ansh" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
         crossOrigin="anonymous" />
       <ins className="adsbygoogle"
         style={{ display: "block" }}
@@ -23,7 +23,7 @@ const Home: NextPage<Props> = ({ data }) => {
         data-ad-slot="3220860400"></ins>
       <Script id="pushAdd">
         (adsbygoogle = window.adsbygoogle || []).push({ });
-      </Script>
+      </Script> */}
       <Layout>
         <Container>
           <div className="grid gap-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">

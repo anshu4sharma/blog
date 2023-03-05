@@ -5,12 +5,12 @@ import { parseISO, format } from "date-fns";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import axios from "axios";
 import { TPost, TPosts } from "@/types";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
-import { NEXT_URL, relValidateTimer } from "@/utils/all";
+import { NEXT_URL } from "@/utils/all";
 import Script from "next/script";
 type Props = {
   postdata: TPost;
@@ -64,7 +64,7 @@ Error: Export encountered errors on following paths:
           <article className="max-w-screen-md mx-auto ">
             <div className="mx-auto my-3 prose prose-base dark:prose-p:text-white dark:prose-h1:text-white prose-a:text-blue-500 dark:prose-h2:text-white dark:prose-h3:text-white dark:prose-h4:text-white  dark:prose-h5:text-white  dark:prose-h6:text-white">
               <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-left lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
-              {postdata?.attributes?.title}
+                {postdata?.attributes?.title}
               </h1>
               <ReactMarkdown>
                 {postdata?.attributes?.description &&
@@ -121,35 +121,29 @@ Error: Export encountered errors on following paths:
 
 export default Post;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts`);
 
-  let paths = data?.data?.map((page) => ({
-    params: {
-      slug: page.attributes.slug,
-    },
-  }));
-  return {
-    paths,
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res, params }) => {
   try {
     const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts?filters[slug][$eq]=${params?.slug}&populate=*`);
-    if (data.data.length < 1) {
+    if (data.data.length) {
       return {
-        notFound: true,
-      }
+        props: {
+          postdata: data.data[0]
+        },
+      };
     }
     return {
-      props: {
-        postdata: data.data[0]
+      redirect: {
+        destination: '/',
+        permanent: false,
       },
-      revalidate: relValidateTimer,
-    };
-  } catch (err) {
-    return { notFound: true };
+    }
+  } catch (error) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
   }
-};
+}
