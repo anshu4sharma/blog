@@ -13,17 +13,6 @@ type Props = {
 const Home: NextPage<Props> = ({ data }) => {
   return (
     <>
-      {/* <Script id="ansh" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
-        crossOrigin="anonymous" />
-      <ins className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-format="fluid"
-        data-ad-layout-key="-ch-1c+5-13+cj"
-        data-ad-client="ca-pub-4780451799247980"
-        data-ad-slot="3220860400"></ins>
-      <Script id="pushAdd">
-        (adsbygoogle = window.adsbygoogle || []).push({ });
-      </Script> */}
       <Layout>
         <Container>
           <div className="grid gap-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
@@ -38,6 +27,17 @@ const Home: NextPage<Props> = ({ data }) => {
         </Container>
         <Pagination data={data.meta} />
       </Layout>
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
+        crossOrigin="anonymous" />
+      <ins className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-4780451799247980"
+        data-ad-slot="3837492401"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <Script id="indexpagead">
+        (adsbygoogle = window.adsbygoogle || []).push({ });
+      </Script>
     </>
   );
 };
