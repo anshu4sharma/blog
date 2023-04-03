@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { Progress } from "@/components/progress";
 import { useProgressStore } from "@/store";
 import { useEffect } from "react";
+import { Plus_Jakarta_Sans } from "@next/font/google";
+const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
   const setIsAnimating = useProgressStore((state) => state.setIsAnimating);
   const isAnimating = useProgressStore((state) => state.isAnimating);
@@ -42,7 +44,9 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       <Progress isAnimating={isAnimating} />
-      <Component {...pageProps} />
+      <main className={inter.className}>
+        <Component {...pageProps} />
+      </main>
     </ThemeProvider>
   );
 }

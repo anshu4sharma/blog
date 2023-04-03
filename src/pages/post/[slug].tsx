@@ -12,10 +12,23 @@ import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import { NEXT_URL } from "@/utils/all";
 import Script from "next/script";
+import "prismjs/themes/prism-okaidia.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
 type Props = {
   postdata: TPost;
 };
 const Post: FC<Props> = ({ postdata }) => {
+  const renderers = {
+    code: ({ language = "javascript", children }: any) => {
+      return (
+        <SyntaxHighlighter language={language} style={materialDark}>
+          {children}
+        </SyntaxHighlighter>
+      );
+    },
+  };
   /*
   If your fallback is set to true you need to handle the fallback state.
  use this to fix >> Build error occurred
@@ -38,7 +51,7 @@ Error: Export encountered errors on following paths:
               url: postdata.attributes.thumbnail.data.attributes.url,
               width: 850,
               height: 650,
-              alt: 'Profile Photo',
+              alt: "Profile Photo",
             },
           ],
         }}
@@ -48,25 +61,26 @@ Error: Export encountered errors on following paths:
       />
       <ArticleJsonLd
         type="BlogPosting"
-        url={`https://anshusharma.me/post/${postdata.attributes.slug}`} title={postdata.attributes.title}
+        url={`https://anshusharma.me/post/${postdata.attributes.slug}`}
+        title={postdata.attributes.title}
         datePublished={postdata.attributes.publishedAt}
         dateModified={postdata.attributes.updatedAt}
-        authorName={"Anshu Sharma"} description={postdata?.attributes.title}
-        images={[
-          postdata.attributes.thumbnail.data.attributes.url
-        ]}
+        authorName={"Anshu Sharma"}
+        description={postdata?.attributes.title}
+        images={[postdata.attributes.thumbnail.data.attributes.url]}
         publisherName="Anshu Sharma"
-        publisherLogo={"https://blogger.googleusercontent.com/img/a/AVvXsEjwSmfMYNLxV3uTczZ3MjX3HEUcBJbv_1kU6VKRj6BrOQosuHeogzxMpa0YTlxoHKQvS3V81fcZ157OLVJMbNV7iz8kiJINPYdhh_0ZnBBQyRb22Pczckrdv2eM8XBbAiXqQ8LOebS97Upe3LoyjjIFIelWfJsQ0vci0hnR0tsblmYHELA7WcW0tQ1t=s654"}
-
+        publisherLogo={
+          "https://blogger.googleusercontent.com/img/a/AVvXsEjwSmfMYNLxV3uTczZ3MjX3HEUcBJbv_1kU6VKRj6BrOQosuHeogzxMpa0YTlxoHKQvS3V81fcZ157OLVJMbNV7iz8kiJINPYdhh_0ZnBBQyRb22Pczckrdv2eM8XBbAiXqQ8LOebS97Upe3LoyjjIFIelWfJsQ0vci0hnR0tsblmYHELA7WcW0tQ1t=s654"
+        }
       />
       <Layout>
         <Container>
           <article className="max-w-screen-md mx-auto ">
             <div className="mx-auto my-3 prose prose-base dark:prose-p:text-white dark:prose-h1:text-white prose-a:text-blue-500 dark:prose-h2:text-white dark:prose-h3:text-white dark:prose-h4:text-white  dark:prose-h5:text-white  dark:prose-h6:text-white">
-              <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-left lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+              <h1 className="mt-2 mb-3 text-3xl font-bold tracking-tight text-left lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
                 {postdata?.attributes?.title}
               </h1>
-              <ReactMarkdown>
+              <ReactMarkdown components={renderers}>
                 {postdata?.attributes?.description &&
                   postdata.attributes.description}
               </ReactMarkdown>
@@ -84,7 +98,7 @@ Error: Export encountered errors on following paths:
                     {format(
                       parseISO(
                         postdata?.attributes.createdAt ||
-                        postdata.attributes.publishedAt
+                          postdata.attributes.publishedAt
                       ),
                       "MMMM dd, yyyy"
                     )}
@@ -101,16 +115,21 @@ Error: Export encountered errors on following paths:
                 ← View all posts
               </Link>
             </div>
-            <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
-              crossOrigin="anonymous" />
-            <ins className="adsbygoogle"
+            <Script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4780451799247980"
+              crossOrigin="anonymous"
+            />
+            <ins
+              className="adsbygoogle"
               style={{ display: "block", textAlign: "center" }}
               data-ad-layout="in-article"
               data-ad-format="fluid"
               data-ad-client="ca-pub-4780451799247980"
-              data-ad-slot="7454156444"></ins>
-            <Script id="postads" >
-              (adsbygoogle = window.adsbygoogle || []).push({ });
+              data-ad-slot="7454156444"
+            ></ins>
+            <Script id="postads">
+              (adsbygoogle = window.adsbygoogle || []).push({});
             </Script>
           </article>
         </Container>
@@ -121,29 +140,34 @@ Error: Export encountered errors on following paths:
 
 export default Post;
 
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  res,
+  params,
+}) => {
   try {
-    const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts?filters[slug][$eq]=${params?.slug}&populate=*`);
+    const { data } = await axios.get<TPosts>(
+      `${NEXT_URL}/api/posts?filters[slug][$eq]=${params?.slug}&populate=*`
+    );
     if (data.data.length) {
       return {
         props: {
-          postdata: data.data[0]
+          postdata: data.data[0],
         },
       };
     }
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
-    }
+    };
   } catch (error) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
-    }
+    };
   }
-}
+};

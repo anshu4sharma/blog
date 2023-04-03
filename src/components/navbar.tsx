@@ -39,10 +39,10 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
-                  <Link href="/" className="text-xl dark:hidden">
+                  <Link href="/" className="text-xl font-bold dark:hidden">
                     Anshu Sharma
                   </Link>
-                  <Link href="/" className="hidden text-xl dark:block">
+                  <Link href="/" className="hidden text-xl font-bold dark:block">
                     Anshu Sharma
                   </Link>
                   <Disclosure.Button
