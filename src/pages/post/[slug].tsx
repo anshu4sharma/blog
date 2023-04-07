@@ -14,7 +14,7 @@ import { NEXT_URL } from "@/utils/all";
 import Script from "next/script";
 import "prismjs/themes/prism-okaidia.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { materialOceanic } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 type Props = {
   postdata: TPost;
@@ -23,7 +23,7 @@ const Post: FC<Props> = ({ postdata }) => {
   const renderers = {
     code: ({ language = "javascript", children }: any) => {
       return (
-        <SyntaxHighlighter language={language} style={materialDark}>
+        <SyntaxHighlighter language={language} style={materialOceanic}>
           {children}
         </SyntaxHighlighter>
       );
@@ -76,7 +76,7 @@ Error: Export encountered errors on following paths:
       <Layout>
         <Container>
           <article className="max-w-screen-md mx-auto ">
-            <div className="mx-auto my-3 prose prose-base dark:prose-p:text-white dark:prose-h1:text-white prose-a:text-blue-500 dark:prose-h2:text-white dark:prose-h3:text-white dark:prose-h4:text-white  dark:prose-h5:text-white  dark:prose-h6:text-white">
+            <div className="mx-auto my-3 prose prose-base dark:prose-p:text-white dark:prose-h1:text-white prose-a:text-blue-500 dark:prose-h2:text-white dark:prose-h3:text-white  dark:prose-ul:text-white dark:prose-ol:text-white dark:prose-li:text-white dark:prose-h4:text-white  dark:prose-h5:text-white  dark:prose-h6:text-white">
               <h1 className="mt-2 mb-3 text-3xl font-bold tracking-tight text-left lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
                 {postdata?.attributes?.title}
               </h1>
