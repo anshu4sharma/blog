@@ -17,7 +17,7 @@ const PostList: FC<Props> = ({ post }) => {
       <div className="cursor-pointer group">
         <div
           className={cx(
-            "relative  transition-all bg-gray-100 rounded-md dark:bg-gray-800 hover:scale-105 aspect-video"
+            "relative  transition-all bg-gray-100 rounded-md dark:bg-[#1d334f] hover:scale-105 aspect-video"
           )}
         >
           <Link href={`/post/${post?.attributes.slug}`}>
@@ -29,7 +29,7 @@ const PostList: FC<Props> = ({ post }) => {
                   "Thumbnail"
                 }
                 layout="fill"
-                objectFit="cover"  
+                objectFit="cover"
                 priority={true}
                 className="transition-all"
               />
@@ -40,12 +40,13 @@ const PostList: FC<Props> = ({ post }) => {
             )}
           </Link>
         </div>
-        {
-          post.attributes.categoryColor && post.attributes.category.data.attributes.title && <CategoryLabel
-            color={post.attributes.categoryColor}
-            categories={post.attributes.category.data.attributes.title}
-          />
-        }
+        {post.attributes.categoryColor &&
+          post.attributes.category.data.attributes.title && (
+            <CategoryLabel
+              color={post.attributes.categoryColor}
+              categories={post.attributes.category.data.attributes.title}
+            />
+          )}
         <h2 className="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
           <Link
             href={`/post/${post.attributes.slug}`}
@@ -57,7 +58,7 @@ const PostList: FC<Props> = ({ post }) => {
                   bg-no-repeat
                   transition-[background-size]
                   duration-500
-                  hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]"
+                  hover:bg-[length:100%_3px] group-hover:bg-[length:100%_4px]"
           >
             {post.attributes.title}
           </Link>

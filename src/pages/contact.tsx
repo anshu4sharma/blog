@@ -70,7 +70,7 @@ export default function Contact() {
                     type="text"
                     placeholder="Full Name"
                     autoComplete="false"
-                    className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
+                    className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-[#111827]  focus:ring-4  ${
                       false
                         ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
                         : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
@@ -88,7 +88,7 @@ export default function Contact() {
                     placeholder="Email Address"
                     name="email"
                     autoComplete="false"
-                    className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
+                    className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-[#111827]  focus:ring-4  ${
                       false
                         ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
                         : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
@@ -100,7 +100,7 @@ export default function Contact() {
                   <textarea
                     name="message"
                     placeholder="Your Message"
-                    className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-gray-900   rounded-md outline-none  h-36 focus:ring-4  ${
+                    className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-[#111827]  rounded-md outline-none  h-36 focus:ring-4  ${
                       false
                         ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
                         : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
@@ -110,7 +110,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 font-semibold text-white transition-colors bg-gray-900 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 dark:bg-white dark:text-black "
+                  className="w-full py-4 font-semibold text-white transition-colors bg-[#111827] rounded-md hover:bg-gray-800 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 dark:border-white dark:border-2 dark:text-white "
                 >
                   Send Message
                 </button>
