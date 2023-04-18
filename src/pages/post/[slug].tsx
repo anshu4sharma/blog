@@ -5,12 +5,12 @@ import { parseISO, format } from "date-fns";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import axios from "axios";
 import { TPost, TPosts } from "@/types";
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
-import { NEXT_URL } from "@/utils/all";
+import { NEXT_URL, relValidateTimer } from "@/utils/all";
 import Script from "next/script";
 import "prismjs/themes/prism-okaidia.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -140,34 +140,35 @@ Error: Export encountered errors on following paths:
 
 export default Post;
 
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  res,
-  params,
-}) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts`);
+
+  let paths = data?.data?.map((page) => ({
+    params: {
+      slug: page.attributes.slug,
+    },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const { data } = await axios.get<TPosts>(
-      `${NEXT_URL}/api/posts?filters[slug][$eq]=${params?.slug}&populate=*`
-    );
-    if (data.data.length) {
+    const { data } = await axios.get<TPosts>(`${NEXT_URL}/api/posts?filters[slug][$eq]=${params?.slug}&populate=*`);
+    if (data.data.length < 1) {
       return {
-        props: {
-          postdata: data.data[0],
-        },
-      };
+        notFound: true,
+      }
     }
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
+      props: {
+        postdata: data.data[0]
       },
+      revalidate: relValidateTimer,
     };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
+  } catch (err) {
+    return { notFound: true };
   }
 };
