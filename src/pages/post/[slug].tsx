@@ -110,7 +110,7 @@ Error: Export encountered errors on following paths:
             <div className="flex justify-center mt-7 mb-7">
               <Link
                 href="/"
-                className="px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 "
+                className="px-5 py-2 text-sm text-blue-600 rounded-full dark:text-white bg-brand-secondary/20 "
               >
                 ← View all posts
               </Link>

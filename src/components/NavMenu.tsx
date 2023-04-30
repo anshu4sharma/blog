@@ -18,8 +18,8 @@ const NavMenu = () => {
   }, []);
   return (
     <Menu as="div" className="relative  text-left z-50">
-      <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
-        Category{" "}
+      <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium text-gray-600 dark:text-white hover:text-blue-500">
+        Category
         <ChevronDownIcon
           className="ml-2 -mr-1 h-5 w-4 text-gray-500"
           aria-hidden="true"

@@ -9,6 +9,10 @@ export default function Navbar() {
       label: "Home",
       href: "/",
     },
+    {
+      label: "Portfolio",
+      href: "/portfolio",
+    },
   ];
 
   const rightmenu = [
@@ -32,17 +36,20 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       key={index}
-                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-white hover:text-blue-500"
                     >
                       {item.label}
                     </Link>
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
-                  <Link href="/" className="text-xl font-bold dark:hidden">
+                  <Link href="/" className="text-xl font-black dark:hidden tracking-wider">
                     Anshu Sharma
                   </Link>
-                  <Link href="/" className="hidden text-xl font-bold dark:block">
+                  <Link
+                    href="/"
+                    className="hidden text-xl font-black dark:block tracking-wider"
+                  >
                     Anshu Sharma
                   </Link>
                   <Disclosure.Button
@@ -77,7 +84,7 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       key={index}
-                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-white hover:text-blue-500"
                     >
                       <span> {item.label}</span>
                     </Link>
@@ -90,7 +97,7 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       key={index}
-                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-white hover:text-blue-500"
                     >
                       {item.label}
                     </Link>

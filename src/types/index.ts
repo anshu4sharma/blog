@@ -3,6 +3,10 @@ export type TPosts = {
   meta: Meta;
 };
 
+export type TPorftolios = {
+  data: TPorftolio[];
+  meta: Meta;
+};
 export type Meta = {
   pagination: {
     page: number;
@@ -17,6 +21,10 @@ export type TPost = {
   attributes: TAttributes;
 };
 
+export type TPorftolio = {
+  id: number;
+  attributes: TPorftolioData;
+};
 export type TAttributes = {
   title: string;
   description: string;
@@ -30,6 +38,20 @@ export type TAttributes = {
   categoryColor: string;
   keywords: string | null;
   short_description: string;
+};
+
+export type TPorftolioData = Omit<
+  TAttributes,
+  | "categoryColor"
+  | "author"
+  | "short_description"
+  | "keywords"
+  | "category"
+  | "slug"
+> & {
+  demo: string;
+  techstack: string;
+  src: string;
 };
 
 export type SingleCategory = {
