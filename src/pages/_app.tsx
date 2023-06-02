@@ -7,7 +7,7 @@ import { Progress } from "@/components/progress";
 import { useProgressStore } from "@/store";
 import { useEffect } from "react";
 import { Plus_Jakarta_Sans } from "@next/font/google";
-import OneSignal from "react-onesignal";
+import runOneSignal from "@/components/OneSignal";
 
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
@@ -30,11 +30,10 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeError", handleStop);
     };
   }, [router, setIsAnimating]);
+  
   useEffect(() => {
-    OneSignal.init({
-      appId: "60b3803b-28aa-4d68-b40d-e91d97bcf28c",
-    });
-  }, []);
+    runOneSignal()
+  });
   return (
     <ThemeProvider attribute="class">
       <DefaultSeo
